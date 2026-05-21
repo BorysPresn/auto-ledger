@@ -1,9 +1,9 @@
-export interface HeaderNavLink  {
+export interface SidebarNavLink  {
     path: string;
     title: string;
 }
 
-export const headerNavLinks: HeaderNavLink[] = [
+export const sidebarNavLinks: SidebarNavLink[] = [
     {
         path: "/",
         title: "Dashboard"
