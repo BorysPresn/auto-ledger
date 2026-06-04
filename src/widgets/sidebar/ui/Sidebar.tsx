@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { appRouteMeta } from "../../../shared/config/routes";
 import styles from "./Sidebar.module.scss";
 import clsx from "clsx";
+import { appRouteMeta } from "../../../shared/config/routes";
 
 export const Sidebar = () => {
   const sidebarItems = appRouteMeta.filter((route) => route.isShownInSidebar);
@@ -11,7 +11,7 @@ export const Sidebar = () => {
       <nav className={styles.nav}>
         <ul className={styles.list}>
           {sidebarItems.map((item) => (
-            <li className={styles.item} key={item.path}>
+            <li key={item.path} className={styles.item}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>

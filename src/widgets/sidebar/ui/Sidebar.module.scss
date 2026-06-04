@@ -40,8 +40,8 @@
     color var(--transition-fast);
 }
 
-.link:hover {
-  background-color: var(--color-grey-20);
+.link:hover:not(.active) {
+  background-color: #0400ff20;
 }
 
 .active {
