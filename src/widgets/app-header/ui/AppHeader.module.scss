@@ -1,0 +1,78 @@
+.header {
+  height: var(--header-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-5);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  z-index: var(--z-header);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  padding-right: var(--space-5);
+  height: 100%;
+  gap: var(--space-3);
+  border-right: 1px solid var(--color-border);
+}
+
+.logo,
+.avatar {
+  width: 41px;
+  height: 41px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-hover);
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: var(--font-weight-bold);
+}
+
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: var(--space-5);
+  flex: 1;
+  color: var(--color-primary-hover);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-bold);
+}
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px var(--space-5);
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-fast);
+}
+
+.addButton:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.rightSide {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.avatar {
+  color: var(--color-text-muted);
+  background-color: var(--color-border);
+}

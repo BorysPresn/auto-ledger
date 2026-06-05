@@ -1,11 +1,14 @@
 .shell {
   display: grid;
-  grid-template-columns: 240px 1fr;
-  min-height: calc(100vh - 64px);
+  grid-template-columns: var(--sidebar-width) 1fr;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
 }
 
 .main {
-  padding: 24px;
+  min-width: 0;
+  overflow: auto;
+  padding: var(--space-5);
 }
 
 @media (max-width: 768px) {
@@ -14,6 +17,6 @@
   }
 
   .main {
-    padding: 16px;
+    padding: var(--space-4);
   }
 }
