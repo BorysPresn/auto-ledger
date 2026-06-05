@@ -18,24 +18,6 @@
     font-weight: $fw-bold;
 }
 
-@mixin button-base {
-    @include text-small;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all .2s ease;
-    min-height: 50px;
-    padding-inline: $space-5;
-
-    &:disabled {
-        cursor: not-allowed;
-        opacity: .6;
-    }
-}
-
 @mixin surface-card {
     background-color: $grey-10;
     border: 1px solid $grey-30;

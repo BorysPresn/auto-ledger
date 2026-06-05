@@ -47,25 +47,6 @@
   font-weight: var(--font-weight-bold);
 }
 
-.addButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px var(--space-5);
-  border: none;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
-  font-weight: var(--font-weight-medium);
-  transition: background-color var(--transition-fast);
-}
-
-.addButton:hover {
-  background-color: var(--color-primary-hover);
-}
-
 .rightSide {
   display: flex;
   gap: var(--space-6);
