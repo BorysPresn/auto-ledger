@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
 import clsx from "clsx";
 import { appRouteMeta } from "../../../shared/config/routes";
+import { Icon } from "../../../shared";
 
 export const Sidebar = () => {
   const sidebarItems = appRouteMeta.filter((route) => route.isShownInSidebar);
@@ -18,7 +19,7 @@ export const Sidebar = () => {
                   clsx(styles.link, isActive && styles.active)
                 }
               >
-                {item.iconLabel}
+                {item.iconName && <Icon name={item.iconName} />}
               </NavLink>
             </li>
           ))}

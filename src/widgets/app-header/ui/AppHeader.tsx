@@ -15,8 +15,8 @@ export const AppHeader = () => {
       </div>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.rightSide}>
-        <Button variant="blue" shape="pill" type="button">
-          Add New +
+        <Button variant="blue" shape="pill" type="button" iconPosition="right" icon="add">
+          Add New
         </Button>
         <span className={styles.avatar}>IMG</span>
       </div>
