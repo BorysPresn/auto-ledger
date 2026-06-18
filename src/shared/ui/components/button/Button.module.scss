@@ -1,0 +1,68 @@
+@use "../../../styles/variables.scss" as *;
+@use "../../../styles/mixins.scss" as *;
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-3;
+  padding-inline: $space-5;
+  min-height: 50px;
+  color: $white;
+  @include text-small;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.button--modal {
+  padding: 0;
+}
+
+.button--round {
+  border-radius: 50%;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.button--pill {
+  border-radius: $radius-pill;
+}
+
+.button--white {
+  background-color: $white;
+  color: $navy;
+}
+
+.button--white:not(:disabled):hover {
+  background-color: $grey-30;
+}
+
+.button--blue {
+  background-color: $blue;
+}
+
+.button--blue:not(:disabled):hover {
+  background-color: $dark-blue;
+}
+
+.button--pink {
+  background-color: $pink;
+}
+
+.button--pink:not(:disabled):hover {
+  background-color: $dark-pink;
+}
+
+.border--grey {
+  border: 1px solid $grey-30;
+}

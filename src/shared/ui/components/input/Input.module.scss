@@ -1,0 +1,67 @@
+@use "../../../styles/variables.scss" as *;
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.label {
+  font-size: $fz-body;
+  line-height: $lh-h5;
+  margin-bottom: $space-3;
+  transition: color 0.2s ease;
+}
+
+.input {
+  font-size: $fz-body;
+  line-height: $lh-h5;
+  border: 1px solid $grey-30;
+  background-color: $grey-10;
+  border-radius: $radius-md;
+  padding: 10px 20px;
+  outline: 0;
+  color: inherit;
+}
+
+.input:focus {
+  outline: 2px solid $grey-50;
+}
+
+.inputContainer.error label {
+  color: $pink;
+}
+
+.inputContainer.error label::after {
+  content: "";
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  width: $space-4;
+  height: $space-4;
+  margin-left: $space-2;
+  background-image: url("../../icons/warning.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.inputContainer.error input {
+  border: 1px solid $pink;
+}
+
+p.error {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  color: $pink;
+  font-size: $fz-extra-small;
+  line-height: $lh-extra-small;
+  min-height: $lh-extra-small;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+p.showError {
+  opacity: 1;
+}
