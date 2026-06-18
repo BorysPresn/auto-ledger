@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Overlay } from "./ModalOverlay/ModalOverlay";
-import { ModalContainer, type ModalContainerSize } from "./ModalContainer/ModalContainer";
+import {
+  ModalContainer,
+  type ModalContainerSize,
+} from "./ModalContainer/ModalContainer";
 import { ModalHeader } from "./ModalHeader/ModalHeader";
 import styles from "./styles.module.scss";
 
@@ -51,7 +54,7 @@ export const Modal = ({
       <div className={styles.backdrop} onClick={handleOverlayClick}>
         <ModalContainer size={size}>
           <ModalHeader title={title} onClose={onClose} />
-          {children}
+          <div className={styles.body}>{children}</div>
         </ModalContainer>
       </div>
     </Overlay>

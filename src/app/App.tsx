@@ -4,16 +4,18 @@ import { AppHeader, Sidebar } from "../widgets";
 import styles from "./App.module.scss";
 import { useState } from "react";
 import { Modal } from "../shared";
+import { AddFuelRecordForm } from "../features/fuel-record/add-fuel-record";
 
 export const App = () => {
-  const [isAddRecordModalOpen, setIsAddRecordModalOpen] = useState<boolean>(false);
-  const handleModal = () => {
+  const [isAddRecordModalOpen, setIsAddRecordModalOpen] =
+    useState<boolean>(false);
+  const handleAddRecordModalOpen = () => {
     setIsAddRecordModalOpen(true);
   };
 
   return (
     <BrowserRouter>
-      <AppHeader openModal={handleModal} />
+      <AppHeader openModal={handleAddRecordModalOpen} />
       <div className={styles.shell}>
         <Sidebar />
         <main className={styles.main}>
@@ -28,7 +30,11 @@ export const App = () => {
         }}
         title="Add record"
       >
-        Add new record form will be here
+        <AddFuelRecordForm
+          onClose={() => {
+            setIsAddRecordModalOpen(false);
+          }}
+        />
       </Modal>
     </BrowserRouter>
   );
