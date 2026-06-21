@@ -12,7 +12,9 @@ export const App = () => {
   const handleAddRecordModalOpen = () => {
     setIsAddRecordModalOpen(true);
   };
-
+  const handleAddRecordModalClose = () => {
+    setIsAddRecordModalOpen(false);
+  };
   return (
     <BrowserRouter>
       <AppHeader openModal={handleAddRecordModalOpen} />
@@ -24,17 +26,11 @@ export const App = () => {
       </div>
       <Modal
         isOpen={isAddRecordModalOpen}
-        size={"medium"}
-        onClose={() => {
-          setIsAddRecordModalOpen(false);
-        }}
+        size="medium"
+        onClose={handleAddRecordModalClose}
         title="Add record"
       >
-        <AddFuelRecordForm
-          onClose={() => {
-            setIsAddRecordModalOpen(false);
-          }}
-        />
+        <AddFuelRecordForm onClose={handleAddRecordModalClose} />
       </Modal>
     </BrowserRouter>
   );
