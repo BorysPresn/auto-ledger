@@ -5,7 +5,7 @@
   padding-top: $space-3;
   display: flex;
   flex-direction: column;
-  gap: $space-6;
+  gap: $space-3;
 }
 
 .radio {
@@ -20,9 +20,26 @@
   cursor: pointer;
 }
 
+.radioItemError {
+  color: $pink;
+}
+
 .formAction {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: $space-4;
+}
+
+.error {
+  color: $pink;
+  font-size: $fz-extra-small;
+  line-height: $lh-extra-small;
+  min-height: $lh-extra-small;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.showError {
+  opacity: 1;
 }

@@ -8,7 +8,7 @@ import { AddFuelRecordForm } from "../features/fuel-record/add-fuel-record";
 
 export const App = () => {
   const [isAddRecordModalOpen, setIsAddRecordModalOpen] =
-    useState<boolean>(false);
+    useState(false);
   const handleAddRecordModalOpen = () => {
     setIsAddRecordModalOpen(true);
   };
