@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Overlay } from "./ModalOverlay/ModalOverlay";
-import { ModalContainer, type ModalContainerSize } from "./ModalContainer/ModalContainer";
+import {
+  ModalContainer,
+  type ModalContainerSize,
+} from "./ModalContainer/ModalContainer";
 import { ModalHeader } from "./ModalHeader/ModalHeader";
 import styles from "./Modal.module.scss";
 
@@ -18,7 +21,7 @@ export const Modal = ({
   children,
   onClose,
 }: Modalprops) => {
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -48,10 +51,10 @@ export const Modal = ({
 
   return (
     <Overlay>
-      <div className={styles.backdrop} onClick={handleOverlayClick}>
+      <div className={styles.backdrop} onMouseDown={handleBackdropMouseDown}>
         <ModalContainer size={size}>
           <ModalHeader title={title} onClose={onClose} />
-          {children}
+          <div className={styles.body}>{children}</div>
         </ModalContainer>
       </div>
     </Overlay>

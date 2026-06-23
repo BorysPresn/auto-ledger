@@ -50,10 +50,7 @@
 }
 
 p.error {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
+  margin-top: $space-1;
   color: $pink;
   font-size: $fz-extra-small;
   line-height: $lh-extra-small;
