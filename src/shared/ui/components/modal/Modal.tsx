@@ -5,7 +5,7 @@ import {
   type ModalContainerSize,
 } from "./ModalContainer/ModalContainer";
 import { ModalHeader } from "./ModalHeader/ModalHeader";
-import styles from "./styles.module.scss";
+import styles from "./Modal.module.scss";
 
 interface Modalprops {
   isOpen: boolean;

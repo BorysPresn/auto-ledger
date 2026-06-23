@@ -1,0 +1,27 @@
+@use "../../../shared/styles/variables.scss" as *;
+
+.recordsList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  width: 100%;
+}
+
+.recordsCard {
+  border: 1px solid $grey-30;
+  padding: $space-3;
+  background-color: $grey-20;
+  border-radius: $radius-md;
+}
+
+.empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-6;
+  color: $grey-70;
+  font-size: $fz-body;
+  line-height: $lh-body;
+}

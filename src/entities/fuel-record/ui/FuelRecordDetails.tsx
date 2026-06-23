@@ -8,6 +8,12 @@ interface FuelRecordDetailsProps {
 export const FuelRecordDetails = ({ record }: FuelRecordDetailsProps) => {
   const items = [
     {
+      key: "fuelConsumption",
+      label: "Fuel consumption",
+      value: record.fuelConsumption,
+      suffix: " l/100km",
+    },
+    {
       key: "fullTank",
       label: "Full tank",
       value: record.fullTank ? "Yes" : "No",
@@ -41,12 +47,6 @@ export const FuelRecordDetails = ({ record }: FuelRecordDetailsProps) => {
       label: "Fuel cost",
       value: record.moneySpent,
       suffix: " zl",
-    },
-    {
-      key: "fuelConsumption",
-      label: "Fuel consumption",
-      value: record.fuelConsumption,
-      suffix: " l/100km",
     },
   ];
 

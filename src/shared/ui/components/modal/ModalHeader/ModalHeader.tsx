@@ -1,5 +1,5 @@
 import { Button } from "../../button";
-import styles from "./styles.module.scss";
+import styles from "./ModalHeader.module.scss";
 
 interface ModalHeaderProps {
   title?: string;
