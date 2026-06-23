@@ -1,11 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AuthPage, DashboardPage, HistoryPage } from "../../pages";
+import { DashboardPage, HistoryPage, LoginPage, RegisterPage } from "../../pages";
 import { appRouteMeta } from "../../shared/config/routes";
 
 const pageByPath = {
   "/dashboard": <DashboardPage />,
   "/history": <HistoryPage />,
-  "/auth": <AuthPage />,
+  "/login": <LoginPage />,
+  "/register": <RegisterPage />,
 };
 
 export const AppRouter = () => {
