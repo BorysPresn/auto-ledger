@@ -21,7 +21,7 @@ export const Modal = ({
   children,
   onClose,
 }: Modalprops) => {
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -51,7 +51,7 @@ export const Modal = ({
 
   return (
     <Overlay>
-      <div className={styles.backdrop} onClick={handleOverlayClick}>
+      <div className={styles.backdrop} onMouseDown={handleBackdropMouseDown}>
         <ModalContainer size={size}>
           <ModalHeader title={title} onClose={onClose} />
           <div className={styles.body}>{children}</div>
