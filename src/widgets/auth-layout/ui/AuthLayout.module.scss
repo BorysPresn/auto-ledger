@@ -2,18 +2,20 @@
 
 .overlay {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: $space-6 $space-4;
   background-color: $black-50;
 }
 
 .card {
   width: min(620px, calc(100vw - 32px));
+  margin-block: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: $white;
   border-radius: $radius-md;
 }
@@ -34,4 +36,5 @@
   display: flex;
   flex-direction: column;
   padding-inline: $space-6;
+  padding-block: $space-5;
 }
