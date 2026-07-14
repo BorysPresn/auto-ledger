@@ -4,6 +4,7 @@
   "workspaces": ["apps/*"],
   "scripts": {
     "dev:web": "npm run dev --workspace=@auto-ledger/web",
+    "dev:api": "npm run dev --workspace=@auto-ledger/api",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"
   }

@@ -10,7 +10,8 @@ The project is currently under active development.
 ```text
 auto-ledger/
 |-- apps/
-|   `-- web/      React, TypeScript, and Vite frontend
+|   |-- api/       Express and TypeScript API
+|   `-- web/       React, TypeScript, and Vite frontend
 |-- package.json  npm workspace configuration
 `-- README.md
 ```
@@ -36,8 +37,21 @@ Start the frontend development server from the repository root:
 npm run dev:web
 ```
 
+Start the API development server from the repository root:
+
+```bash
+npm run dev:api
+```
+
 ## Available Scripts
 
 - `npm run dev:web` starts the frontend development server.
+- `npm run dev:api` starts the API development server.
 - `npm run build` builds all workspace applications that provide a build script.
 - `npm run lint` runs linting for all workspace applications that provide a lint script.
+
+## Endpoints
+
+### API Health Check
+
+`GET http://localhost:3000/api/health` - Returns `{"status": "ok"}` when the API is running correctly.
