@@ -21,7 +21,11 @@ export const appRouteMeta: AppRouteMeta[] = [
     iconName: "tasks",
   },
   {
-    path: "/auth",
-    title: "Auth",
+    path: "/login",
+    title: "Login",
+  },
+  {
+    path: "/register",
+    title: "Registration",
   },
 ];

@@ -1,0 +1,21 @@
+@use "../../../shared/styles/variables.scss" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  padding: $space-3 $space-5;
+  color: $navy;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
