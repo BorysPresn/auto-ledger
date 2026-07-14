@@ -2,7 +2,12 @@ import { NavLink } from "react-router-dom";
 import { Button, Input } from "../../../../shared";
 import styles from "../../ui/AuthForm.module.scss";
 import { useForm } from "react-hook-form";
-import { EMAIL_PATTERN, PASSWORD_MIN_LENGTH } from "../../model/validation";
+import {
+  EMAIL_PATTERN,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+  PASSWORD_PATTERN,
+} from "../../model/validation";
 import type { RegisterFormValues } from "../../model/types";
 
 export const RegisterForm = () => {
@@ -10,9 +15,10 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     reset,
-    watch,
+    getValues,
     formState: { errors },
   } = useForm<RegisterFormValues>({
+    mode: "onTouched",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -21,8 +27,6 @@ export const RegisterForm = () => {
       repeatPassword: "",
     },
   });
-
-  const passwordValue = watch("password");
 
   const registerFormSubmit = (data: RegisterFormValues) => {
     console.log(data);
@@ -69,8 +73,17 @@ export const RegisterForm = () => {
           required: "Password is required",
           minLength: {
             value: PASSWORD_MIN_LENGTH,
-            message: "Password must be at least 6 characters long",
+            message: "Password must be at least 6 characters",
           },
+          maxLength: {
+            value: PASSWORD_MAX_LENGTH,
+            message: "Password must be at most 20 characters",
+          },
+          pattern: {
+            value: PASSWORD_PATTERN,
+            message: "Password must contain at least one letter and one number",
+          },
+          deps: ["repeatPassword"],
         })}
         error={errors.password?.message}
       />
@@ -80,7 +93,7 @@ export const RegisterForm = () => {
         {...register("repeatPassword", {
           required: "Repeat password is required",
           validate: (value) => {
-            return value === passwordValue || "Passwords do not match";
+            return value === getValues("password") || "Passwords do not match";
           },
         })}
         error={errors.repeatPassword?.message}

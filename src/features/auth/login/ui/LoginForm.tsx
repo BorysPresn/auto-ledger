@@ -40,7 +40,11 @@ export const LoginForm = () => {
       <Input
         type="password"
         label="Password"
-        {...register("password", { required: "Password is required" })}
+        {...register("password", {
+          required: "Password is required",
+          validate: (value) =>
+            value.trim().length > 0 || "Password cannot contain only spaces",
+        })}
         error={errors.password?.message}
       />
       <div className={styles.formActions}>
