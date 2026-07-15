@@ -2,6 +2,7 @@ import { setServers } from "node:dns";
 import { app } from "./app.js";
 import { env } from "./config/env.js";
 import { closeDatabaseConnection, connectToDatabase } from "./db/mongo.js";
+import { ensureUserIndexes } from "./modules/users/users.collection.js";
 
 async function startServer(): Promise<void> {
   if (env.DNS_SERVER) {
@@ -9,6 +10,9 @@ async function startServer(): Promise<void> {
   }
   await connectToDatabase();
   console.log("Database connected");
+
+  await ensureUserIndexes();
+
   const server = app.listen(env.PORT, () => {
     console.log(`Server is running at http://localhost:${env.PORT}`);
   });
