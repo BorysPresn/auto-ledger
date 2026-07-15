@@ -29,6 +29,20 @@ Install all workspace dependencies from the repository root:
 npm install
 ```
 
+## Environment Configuration
+
+Create `apps/api/.env` using `apps/api/.env.example` as a template.
+
+- Local configuration file: `apps/api/.env`.
+- Example configuration: `apps/api/.env.example`.
+- The local `.env` file is not committed to Git.
+- The API provides safe default values when variables are omitted.
+
+| Variable | Description | Default | Allowed values |
+|---|---|---|---|
+| `NODE_ENV` | API runtime environment | `development` | `development`, `test`, `production` |
+| `PORT` | API HTTP port | `3000` | Integer from `1` to `65535` |
+
 ## Development
 
 Start the frontend development server from the repository root:
