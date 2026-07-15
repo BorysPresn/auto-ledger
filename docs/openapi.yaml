@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: Auto Ledger API
+  version: 0.1.0
+  description: API for Auto Ledger web, mobile, and desktop clients.
+security: []
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+tags:
+  - name: System
+    description: API availability and system endpoints.
+  - name: Authentication
+    description: User registration and authentication endpoints.
+paths:
+  /api/health:
+    get:
+      tags:
+        - System
+      summary: Check API availability
+      operationId: getApiHealth
+      responses:
+        "200":
+          description: API is running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              example:
+                status: ok
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register a user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+            example:
+              firstName: Borys
+              lastName: Presniak
+              email: borys.test@example.com
+              password: password1
+      responses:
+        "201":
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"
+        "400":
+          description: Invalid registration data or malformed JSON
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/ValidationErrorResponse"
+                  - $ref: "#/components/schemas/ApiErrorResponse"
+              examples:
+                validationError:
+                  summary: Invalid registration fields
+                  value:
+                    error:
+                      code: VALIDATION_ERROR
+                      message: Invalid registration data
+                      fields:
+                        email:
+                          - Invalid email address
+                invalidJson:
+                  summary: Malformed JSON body
+                  value:
+                    error:
+                      code: INVALID_JSON
+                      message: Invalid JSON request body
+        "409":
+          description: A user with this email already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+              example:
+                error:
+                  code: EMAIL_ALREADY_EXISTS
+                  message: Email already exists
+        "500":
+          description: Unexpected server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+              example:
+                error:
+                  code: INTERNAL_SERVER_ERROR
+                  message: Internal server error
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          const: ok
+    RegisterRequest:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+      properties:
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 6
+          maxLength: 20
+          pattern: "^(?=.*[A-Za-z])(?=.*\\d)\\S+$"
+          writeOnly: true
+    RegisterResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - user
+      properties:
+        user:
+          $ref: "#/components/schemas/PublicUser"
+    PublicUser:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{24}$"
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+    ApiErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          $ref: "#/components/schemas/ApiError"
+    ApiError:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ValidationErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+            - code
+            - message
+            - fields
+          properties:
+            code:
+              type: string
+              const: VALIDATION_ERROR
+            message:
+              type: string
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
