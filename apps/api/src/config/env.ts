@@ -15,6 +15,13 @@ const envSchema = z.object({
     .string()
     .trim()
     .min(1, { message: "MONGODB_DB_NAME is required" }),
+  JWT_ACCESS_SECRET: z
+    .string()
+    .trim()
+    .min(32, {
+      message: "JWT_ACCESS_SECRET must contain at least 32 characters",
+    }),
+    ACCESS_TOKEN_TTL_SECONDS: z.coerce.number().int().positive().default(900)
 });
 
 const result = envSchema.safeParse(process.env);
