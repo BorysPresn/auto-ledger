@@ -96,6 +96,78 @@ paths:
                 error:
                   code: INTERNAL_SERVER_ERROR
                   message: Internal server error
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Log in a user
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+            example:
+              email: borys.test@example.com
+              password: password1
+      responses:
+        "200":
+          description: User logged in successfully
+          headers:
+            Set-Cookie:
+              description: HTTP-only refresh token cookie
+              schema:
+                type: string
+              example: "refreshToken=<opaque-token>; Max-Age=2592000; Path=/api/auth; HttpOnly; SameSite=Lax"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          description: Invalid login data or malformed JSON
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/ValidationErrorResponse"
+                  - $ref: "#/components/schemas/ApiErrorResponse"
+              examples:
+                validationError:
+                  summary: Invalid login fields
+                  value:
+                    error:
+                      code: VALIDATION_ERROR
+                      message: Invalid login data
+                      fields:
+                        email:
+                          - Invalid email address
+                invalidJson:
+                  summary: Malformed JSON body
+                  value:
+                    error:
+                      code: INVALID_JSON
+                      message: Invalid JSON request body
+        "401":
+          description: Invalid email or password
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+              example:
+                error:
+                  code: INVALID_CREDENTIALS
+                  message: Invalid email or password
+        "500":
+          description: Unexpected server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+              example:
+                error:
+                  code: INTERNAL_SERVER_ERROR
+                  message: Internal server error
 components:
   schemas:
     HealthResponse:
@@ -140,6 +212,31 @@ components:
       properties:
         user:
           $ref: "#/components/schemas/PublicUser"
+    LoginRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 1
+          writeOnly: true
+    LoginResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - user
+        - accessToken
+      properties:
+        user:
+          $ref: "#/components/schemas/PublicUser"
+        accessToken:
+          type: string
     PublicUser:
       type: object
       additionalProperties: false
