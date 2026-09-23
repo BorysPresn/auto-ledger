@@ -33,6 +33,18 @@ This guide describes the manual test process for `POST /api/auth/refresh`.
    with path `/api/auth`.
 6. Open `POST /api/auth/refresh`. The request body must be empty.
 
+
+## MongoDB Compass setup
+
+1. Download MongoDB Compass from
+```https://www.mongodb.com/try/download/compass```
+2. Add `New Connection`
+3. Paste in URI field
+```mongodb+srv://<Login>:<Password>@cluster0.ub2nw6k.mongodb.net/```
+4. `Login` and `Password` you can find in Trello
+5. Find `autoLedgerDB` and click on it.
+
+
 ## Test Cases
 
 ### REFRESH-01: Successful token refresh
