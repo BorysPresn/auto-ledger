@@ -4,9 +4,15 @@ import { env } from "../../../config/env.js";
 import type { AuthSessionDocument } from "./auth-session.types.js";
 import { insertAuthSession } from "./session.repository.js";
 
+type CreateAuthSessionResult = {
+  sessionId: string;
+  refreshToken: string;
+  expiresAt: Date;
+};
+
 export const createAuthSession = async (
   userId: ObjectId,
-): Promise<{ sessionId: string; refreshToken: string }> => {
+): Promise<CreateAuthSessionResult> => {
   const refreshToken = createRefreshToken();
   const refreshTokenHash = hashRefreshToken(refreshToken);
   const now = new Date();
@@ -26,5 +32,6 @@ export const createAuthSession = async (
   return {
     sessionId: result.toHexString(),
     refreshToken,
+    expiresAt,
   };
 };

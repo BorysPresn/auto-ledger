@@ -20,8 +20,8 @@ export const loginController: RequestHandler = async (req, res, next) => {
   }
 
   try {
-    const { user, accessToken, refreshToken } = await loginUser(result.data);
-    setRefreshTokenCookie(res, refreshToken);
+    const { user, accessToken, refreshToken, refreshTokenExpiresAt } = await loginUser(result.data);
+    setRefreshTokenCookie(res, refreshToken, refreshTokenExpiresAt);
     res.status(200).json({ user, accessToken });
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {

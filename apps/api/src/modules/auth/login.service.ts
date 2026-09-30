@@ -14,6 +14,7 @@ export type LoginResult = {
   };
   accessToken: string;
   refreshToken: string;
+  refreshTokenExpiresAt: Date;
 };
 
 export const loginUser = async (data: LoginInput): Promise<LoginResult> => {
@@ -29,7 +30,7 @@ export const loginUser = async (data: LoginInput): Promise<LoginResult> => {
     throw new InvalidCredentialsError();
   }
   const userIdString = user._id.toHexString();
-  const { sessionId, refreshToken } = await createAuthSession(user._id);
+  const { sessionId, refreshToken, expiresAt: refreshTokenExpiresAt } = await createAuthSession(user._id);
   const accessToken = await createAccessToken(userIdString, sessionId);
   const result: LoginResult = {
     user: {
@@ -40,6 +41,7 @@ export const loginUser = async (data: LoginInput): Promise<LoginResult> => {
     },
     accessToken,
     refreshToken,
+    refreshTokenExpiresAt
   };
   return result;
 };
