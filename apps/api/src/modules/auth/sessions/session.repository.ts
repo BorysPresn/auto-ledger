@@ -32,3 +32,20 @@ export const rotateAuthSession = async (
     returnDocument: "after",
   });
 };
+
+export const revokeAuthSession = async (
+  refreshTokenHash: string,
+  now: Date,
+): Promise<boolean> => {
+  const filter = {
+    refreshTokenHash,
+    revokedAt: null,
+    expiresAt: { $gt: now },
+  };
+  const update = {
+    $set: { revokedAt: now, updatedAt: now },
+  };
+  const collection = getAuthSessionsCollection();
+  const result = await collection.updateOne(filter, update);
+  return result.modifiedCount === 1;
+};
