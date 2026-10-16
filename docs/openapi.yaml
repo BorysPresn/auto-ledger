@@ -209,6 +209,34 @@ paths:
                 error:
                   code: INTERNAL_SERVER_ERROR
                   message: Internal server error
+  /api/auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Log out the current session
+      operationId: logoutSession
+      security:
+        - {}
+        - refreshTokenCookie: []
+      responses:
+        "204":
+          description: Session logged out or no active session was found
+          headers:
+            Set-Cookie:
+              description: Clears the HTTP-only refresh token cookie
+              schema:
+                type: string
+              example: "refreshToken=; Path=/api/auth; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax"
+        "500":
+          description: Unexpected server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+              example:
+                error:
+                  code: INTERNAL_SERVER_ERROR
+                  message: Internal server error
 components:
   schemas:
     HealthResponse:

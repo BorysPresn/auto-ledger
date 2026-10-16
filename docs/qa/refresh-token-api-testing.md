@@ -34,15 +34,18 @@ This guide describes the manual test process for `POST /api/auth/refresh`.
 6. Open `POST /api/auth/refresh`. The request body must be empty.
 
 
-## MongoDB Compass setup
+## MongoDB Compass Setup
 
 1. Download MongoDB Compass from
-```https://www.mongodb.com/try/download/compass```
-2. Add `New Connection`
-3. Paste in URI field
-```mongodb+srv://<Login>:<Password>@cluster0.ub2nw6k.mongodb.net/```
-4. `Login` and `Password` you can find in Trello
-5. Find `autoLedgerDB` and click on it.
+   [the official MongoDB website](https://www.mongodb.com/try/download/compass).
+2. Obtain the QA connection string and credentials from the developer through
+   a private channel.
+3. Select **New Connection**, enter the provided connection details, and
+   connect.
+4. Open `autoLedgerDB`, then open the `authSessions` collection.
+
+Do not store database credentials or connection strings in Trello, Git, or
+project documentation.
 
 
 ## Test Cases
