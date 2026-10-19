@@ -14,3 +14,10 @@ export const findUserByEmail = async (
   const user = await getUsersCollection().findOne({ email });
   return user;
 };
+
+export const findUserById = async (
+  userId: ObjectId,
+): Promise<WithId<UserDocument> | null> => {
+  const user = await getUsersCollection().findOne({ _id: userId });
+  return user;
+};
