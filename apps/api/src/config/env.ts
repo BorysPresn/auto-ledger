@@ -20,6 +20,7 @@ const envSchema = z.object({
   }),
   ACCESS_TOKEN_TTL_SECONDS: z.coerce.number().int().positive().default(900),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(30),
+  WEB_ORIGIN: z.string().trim().url().default("http://localhost:5173"),
 });
 
 const result = envSchema.safeParse(process.env);
